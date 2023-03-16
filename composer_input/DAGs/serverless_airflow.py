@@ -99,7 +99,7 @@ with models.DAG(
     create_batch4 = DataprocCreateBatchOperator(
         task_id="serverless_notebook4",
         batch=BATCH_CONFIG,
-        region="us-central4",
+        region="us-central1",
         batch_id="batch-id-" + str(uuid.uuid1()),
         retry= None
     )
