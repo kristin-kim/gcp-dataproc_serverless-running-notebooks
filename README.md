@@ -66,8 +66,7 @@ Make sure to follow the [guide](https://cloud.google.com/dataproc/docs/concepts/
 3. Create a Cloud Composer Environment
 
 3. Find DAGs folder from Composer Environment and add serverless_airflow.py (DAGs file) to it in order to trigger DAGs execution:
-
-        DAG folder from Cloud Composer Console 
+DAG folder from Cloud Composer Console 
         ![Screenshot 2023-02-07 at 9 04 12 AM](https://user-images.githubusercontent.com/123537947/217266654-f7a017fb-7470-4e04-9803-a72be6f652bd.png)
         
 4. Have all the files available in GCS bucket, except DAGs file which should go into your Composer DAGs folder
