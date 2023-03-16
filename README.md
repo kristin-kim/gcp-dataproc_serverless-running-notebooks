@@ -15,19 +15,15 @@ For more details, check this [document](https://cloud.google.com/dataproc-server
 
 **dataproc_serverless**
 
-├── composer_input           
 
-│   ├── jobs/                       wrapper_papermill.py
-
-│   ├── DAGs/                       serverless_airflow.py
-
-├── notebooks 
-│   ├── datasets/                   electric_vehicle_population.csv
-
-│   ├── jupyter/                    spark_notebook.ipynb
-
-│   ├── jupyter/output 
-
+    ├── composer_input                   
+    │   ├── jobs/                       wrapper_papermill.py
+    │   ├── DAGs/                       serverless_airflow.py
+    ├── notebooks 
+    │   ├── datasets/                   electric_vehicle_population.csv
+    │   ├── jupyter/                    spark_notebook.ipynb
+    │   ├── jupyter/output 
+    
 ## File Details    
 ### composer_input
 * **wrapper_papermill.py**: runs a papermill execution of input notebook and writes the output file into the assgined location
