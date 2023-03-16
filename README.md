@@ -14,12 +14,18 @@ For more details, check this [document](https://cloud.google.com/dataproc-server
 ## File Directory Structure
 
 **dataproc_serverless**
-├── composer_input                   
+
+├── composer_input           
+
 │   ├── jobs/                       wrapper_papermill.py
+
 │   ├── DAGs/                       serverless_airflow.py
+
 ├── notebooks 
 │   ├── datasets/                   electric_vehicle_population.csv
+
 │   ├── jupyter/                    spark_notebook.ipynb
+
 │   ├── jupyter/output 
 
 ## File Details    
