@@ -5,16 +5,15 @@ Orchestrator to run Notebooks on Dataproc Serverless via Cloud Composer
 
 ## What is Dataproc Serverless?
 
-Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster. Specify workload parameters, and then submit the workload to the Dataproc Serverless service. The service will run the workload on a managed compute infrastructure, autoscaling resources as needed. Dataproc Serverless charges apply only to the time when the workload is executing.
+Dataproc Serverless lets you run Spark batch workloads without requiring you to provision and manage your own cluster. You can specify workload parameters, and then submit the workload to the Dataproc Serverless service. The service will run the workload on a managed compute infrastructure, autoscaling resources as needed. Dataproc Serverless charges apply only to the time when the workload is executing.
 
-With Dataproc Serverless, You can run Notebooks and streamline the end-to-end data science workflow without provisioning a cluster.  A Fortune 10 retailer uses Dataproc Serverless for optimizing retail assortment space for 500M+ items. Using Dataproc Serverless, you can run Spark batch workloads without provisioning and managing the clusters and servers. This improves developer productivity and decreases infrastructure costs. 
+With Dataproc Serverless, You can run Notebooks and streamline the end-to-end data science workflow without provisioning a cluster. Also, you can run Spark batch workloads without provisioning and managing the clusters and servers. This improves developer productivity and decreases infrastructure costs. A Fortune 10 retailer uses Dataproc Serverless for optimizing retail assortment space for 500M+ items.  
 
 For more details, check this [document](https://cloud.google.com/dataproc-serverless/docs/overview)
 
 ## File Directory Structure
 
 **dataproc_serverless**
-
 
     ├── composer_input                   
     │   ├── jobs/                       wrapper_papermill.py
@@ -41,7 +40,7 @@ For more details, check this [document](https://cloud.google.com/dataproc-server
         .builder \
         .appName("Spark Session for Electric Vehicle Population") \
         .getOrCreate()
-
+    
     path=f"gs://{gcs_bucket}/dataproc_serverless/notebooks/datasets/electric_vehicle_population.csv"
     df = spark.read.csv(path, header=True)
     df.show()
@@ -67,8 +66,7 @@ Make sure to follow the [guide](https://cloud.google.com/dataproc/docs/concepts/
 
 3. Find DAGs folder from Composer Environment and add serverless_airflow.py (DAGs file) to it in order to trigger DAGs execution:
 DAG folder from Cloud Composer Console 
-        ![Screenshot 2023-02-07 at 9 04 12 AM](https://user-images.githubusercontent.com/123537947/217266654-f7a017fb-7470-4e04-9803-a72be6f652bd.png)
-        
+      
 4. Have all the files available in GCS bucket, except DAGs file which should go into your Composer DAGs folder
 
 5. Create [Variables](https://airflow.apache.org/docs/apache-airflow/stable/howto/variable.html) from Airflow UI for 
