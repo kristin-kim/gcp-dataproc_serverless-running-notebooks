@@ -16,16 +16,18 @@ For more details, check this [document](https://cloud.google.com/dataproc-server
 **dataproc_serverless**
 
     ├── composer_input                   
-    │   ├── jobs/                       wrapper_papermill.py
+    │   ├── jobs/                       vehicle_analytics_executor.py
     │   ├── DAGs/                       serverless_airflow.py
     ├── notebooks 
     │   ├── datasets/                   electric_vehicle_population.csv
-    │   ├── jupyter/                    spark_notebook.ipynb
-    │   ├── jupyter/output 
+    │   ├── jupyter/                    vehicle_analytics.ipynb
+    │   ├── jupyter/output              vehicle_analytics_sample_output.ipynb
+    │   ├── dependencies/               requirements.txt (optional)
+    │   ├── ref/                        reference.py (optional)
     
 ## File Details    
 ### composer_input
-* **wrapper_papermill.py**: runs a papermill execution of input notebook and writes the output file into the assgined location
+* **vehicle_analytics_executor.py**: runs a papermill execution of input notebook and writes the output file into the assgined location
 * **serverless_airflow.py**: orchestrates the workflow 
   * Dataproc Batch Creation :This operator runs your workloads on Dataproc Serverless
     ```
@@ -34,7 +36,7 @@ For more details, check this [document](https://cloud.google.com/dataproc-server
     ```
 
 ### notebooks 
-* **spark_notebook.ibynp** : This file creates Spark Session for Electric Vehicle Population, loads csv file in GCS and perform fundamental Spark functions
+* **vehicle_analytics.ibynp** : This file creates Spark Session for Electric Vehicle Population, loads csv file in GCS and perform fundamental Spark functions. Also, it installs Python Pakages listed in requirements.txt and runs sample Python reference file (optional) 
     ```
     spark = SparkSession \
         .builder \
@@ -54,15 +56,14 @@ For more details, check this [document](https://cloud.google.com/dataproc-server
 
 * **electric_vehicle_population.csv** : this [dataset](https://catalog.data.gov/dataset/electric-vehicle-population-data) shows the Battery Electric Vehicles (BEVs) and Plug-in Hybrid Electric Vehicles (PHEVs) that are currently registered through Washington State Department of Licensing (DOL).
 
+* **requirements.txt** : Python packages to be installed on Notebooks
+* **reference.py** : Python reference file to be evoked on Notebooks
+
 # I) Orchestrating End to End Notebook Execution workflow in Cloud Composer 
 
-1. Make sure to modify gcs path for datasets in Notebook 
+1. Make sure to modify gcs path for datasets in Notebook and make any additional changes.
 
-2. Create [Persistent History Server](https://cloud.google.com/dataproc/docs/concepts/jobs/history-server)
-
-Make sure to follow the [guide](https://cloud.google.com/dataproc/docs/concepts/jobs/history-server#create_a_job_cluster) for setting up properties. For example, it must have the property 'spark:spark.history.fs.logDirectory' configured to act as a Spark history server
-
-3. Create a Cloud Composer Environment
+2. Create a Cloud Composer Environment
 
 3. Find DAGs folder from Composer Environment and add serverless_airflow.py (DAGs file) to it in order to trigger DAGs execution:
 DAG folder from Cloud Composer Console 
@@ -74,8 +75,8 @@ DAG folder from Cloud Composer Console
     * gce_zone - Google Compute Engine zone where Cloud Dataproc cluster should be
       created.
     * gcs_bucket - Google Cloud Storage bucket where all the files are stored 
-    * phs_region = Persistent History Server region ex) us-central1
-    * phs - Persistent History Server name
+    * phs_region = Persistent History Server region ex) us-central1 (optional)
+    * phs - Persistent History Server name (optional)
 
         <img width="425" alt="Screenshot 2023-02-07 at 11 29 09 AM" src="https://user-images.githubusercontent.com/123537947/217304416-2522c177-a3eb-420c-bcfa-7dc4e571d820.png">
 
