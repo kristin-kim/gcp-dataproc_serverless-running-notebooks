@@ -21,9 +21,9 @@ For more details, check this [document](https://cloud.google.com/dataproc-server
     ├── notebooks 
     │   ├── datasets/                   electric_vehicle_population.csv
     │   ├── jupyter/                    vehicle_analytics.ipynb
-    │   ├── jupyter/output              vehicle_analytics_sample_output.ipynb
-    │   ├── dependencies/               requirements.txt (optional)
-    │   ├── ref/                        reference.py (optional)
+    │   ├── jupyter/output/             vehicle_analytics_sample_output.ipynb
+    │   ├── jupyter/dependencies/       requirements.txt (optional)
+    │   ├── jupyter/refs/                reference.py (optional)
     
 ## File Details    
 ### composer_input
